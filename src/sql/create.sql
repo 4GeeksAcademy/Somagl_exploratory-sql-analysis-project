@@ -45,3 +45,4 @@ CREATE TABLE climate (
     precipitation REAL,
     FOREIGN KEY (region_id) REFERENCES regions(id)
 );
+

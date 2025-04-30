@@ -8,32 +8,58 @@ SELECT * FROM climate;
 SELECT * FROM observations;
 
 
--- MISSION 1
--- Your query here
 
--- MISSION 2
--- Your query here:
-
-
--- MISSION 3
--- Your query here:
+SELECT region_id, 
+COUNT(DISTINCT species_id) AS presencia_especies_por_region
+FROM observations
+GROUP BY region_id
+ORDER BY presencia_especies_por_region;
 
 
--- MISSION 4
--- Your query here:
+
+SELECT strftime('%m', observation_date) AS month_selection,
+SUM(count) AS observation_total_num_per_month
+FROM observations 
+GROUP BY month_selection
+ORDER BY observation_total_num_per_month DESC;
 
 
--- MISSION 5
--- Your query here:
+SELECT species_id,
+SUM(count) AS observation_total_num_per_specie
+FROM observations
+GROUP BY species_id 
+ORDER BY observation_total_num_per_specie ASC;
 
 
--- MISSION 6
--- Your query here:
+
+SELECT region_id, COUNT(DISTINCT species_id) AS presencia_especies_por_region
+FROM observations
+GROUP BY region_id
+ORDER BY presencia_especies_por_region;
 
 
--- MISSION 7
--- Your query here:
+SELECT species_id,
+SUM(count) AS observation_total_num_per_specie
+FROM observations
+GROUP BY species_id 
+ORDER BY observation_total_num_per_specie DESC;
 
 
--- MISSION 8
--- Your query here:
+SELECT observer,
+COUNT(observer) AS observer_presence
+FROM observations
+GROUP BY observer
+ORDER BY observer_presence DESC;
+
+
+SELECT  s.id, s.scientific_name
+FROM species s
+LEFT JOIN observations o ON s.id = o.species_id
+WHERE o.species_id IS NULL;
+
+
+SELECT strftime('%m',observation_date) AS month_selection,
+SUM(count) AS observation_total_num_per_month
+FROM observations 
+GROUP BY month_selection
+ORDER BY observation_total_num_per_month DESC;
